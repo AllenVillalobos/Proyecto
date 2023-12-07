@@ -1,0 +1,24 @@
+<div class="preguntas-container" *ngFor="let pregunta of dataSource">
+  <p class="pregunta-text">{{ pregunta.label }}</p>
+  <form class="opciones-form">
+    <ul class="opciones-lista">
+      <li *ngFor="let opcion of pregunta.question_option" class="opcion-item">
+        <input
+          type="radio"
+          name="pregunta{{ pregunta.question_id }}"
+          [value]="opcion.texto"
+          class="opcion-radio"
+          (change)="seleccionarRespuesta(pregunta.question_id, opcion.correcta)"
+        >
+        {{ opcion.texto }}
+      </li>
+    </ul>
+  </form>
+</div>
+<div class="contador-container">
+  <p>Respuestas correctas: {{ contarRespuestas(true) }}</p>
+  <p>Respuestas incorrectas: {{ contarRespuestas(false) }}</p>
+</div>
+<div>
+  <button (click)="Volver()">Volver a la Seleccion de Quizz</button>
+</div>
